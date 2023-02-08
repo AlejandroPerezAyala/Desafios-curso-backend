@@ -1,4 +1,5 @@
-const fs = require('fs');
+import fs from "fs"
+
 
 //Creamos la clase con su contructor
 class ProductManager{
@@ -52,7 +53,7 @@ class ProductManager{
         if (fs.existsSync("./Productos.txt")) {
             let archivo = fs.readFileSync("./Productos.txt", "utf-8")
             let contenido = JSON.parse(archivo)
-            console.log(contenido)
+            return contenido
         }
     }
 
@@ -64,9 +65,9 @@ class ProductManager{
             let product = JSON.parse(Producto)
             if(product.some(product => product.id == id)){
                 let productoFiltrado = product.filter(product => product.id == id);
-                console.log(productoFiltrado);
+                return (productoFiltrado);
             } else {
-                console.log("El producto no existe");
+                return("El producto no existe");
             }   
         } 
     }
@@ -103,12 +104,13 @@ class ProductManager{
 }
 
 //creamos el producto para agregar los campos a travez los metodos 
-let producto = new ProductManager([]);  
+//let producto = new ProductManager([]);  
 //producto.getProducts();
-producto.addProducts("producto de prueba", "esto es un producto de prueba", 200, "abc123", "", 25);
+//producto.addProducts("producto de prueba", "esto es un producto de prueba", 200, "codetest", "", 25);
 //producto.deleteProductById(1);
 //producto.updateProductById(1)
 
+export default ProductManager 
 
 
 
